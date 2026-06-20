@@ -1,0 +1,16 @@
+{
+  "name": "dash.ts",
+  "version": "0.1.0",
+  "description": "A DASH adaptive streaming player built from scratch in TypeScript",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11"
+  }
+}

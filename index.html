@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dash.ts — DASH Player</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0f0f13;
+      color: #e0e0e0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+      gap: 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+
+    h1 span { color: #4fc3f7; }
+
+    /* ── Video container ── */
+    .video-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 900px;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── Controls bar ── */
+    .controls {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    button {
+      padding: 0.5rem 1.25rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    button:hover { opacity: 0.85; }
+
+    #btn-load    { background: #4fc3f7; color: #0f0f13; }
+    #btn-play    { background: #81c784; color: #0f0f13; }
+    #btn-destroy { background: #ef5350; color: #fff; }
+
+    /* ── Status bar ── */
+    .status-bar {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: #aaa;
+      padding: 0.5rem 0;
+      border-top: 1px solid #222;
+    }
+
+    .status-bar strong { color: #fff; }
+
+    /* ── Debug panel placeholder ── */
+    .debug-panel {
+      width: 100%;
+      max-width: 900px;
+      border: 1px dashed #333;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 0.8rem;
+      color: #555;
+      text-align: center;
+    }
+
+    .debug-panel strong { color: #666; display: block; margin-bottom: 0.25rem; }
+
+    /* Chapter badges */
+    .chapter-tag {
+      display: inline-block;
+      background: #1e2a3a;
+      color: #4fc3f7;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>dash<span>.ts</span></h1>
+
+  <!-- ── Video player ───────────────────────────────────────────────────── -->
+  <div class="video-wrap">
+    <video id="video" controls></video>
+  </div>
+
+  <!-- ── Controls ──────────────────────────────────────────────────────── -->
+  <div class="controls">
+    <button id="btn-load">Load Stream</button>
+    <button id="btn-play">Play / Pause</button>
+    <button id="btn-destroy">Destroy</button>
+  </div>
+
+  <!-- ── Status bar ────────────────────────────────────────────────────── -->
+  <div class="status-bar">
+    <div>State: <strong id="state">idle</strong></div>
+    <div>Time:  <strong id="time">0:00 / 0:00</strong></div>
+    <div>Quality: <strong id="quality">—</strong></div>
+    <div>Bandwidth: <strong id="bandwidth">—</strong></div>
+  </div>
+
+  <!-- ── Debug panel — Buffer Visualizer (Chapter 6) ───────────────────── -->
+  <div class="debug-panel">
+    <strong><span class="chapter-tag">CHAPTER 6</span>Buffer Visualizer</strong>
+    Canvas timeline showing buffered ranges, segment boundaries,
+    and per-segment quality will appear here.
+  </div>
+
+  <!-- ── Debug panel — Explainable ABR (Chapter 6) ────────────────────── -->
+  <div class="debug-panel">
+    <strong><span class="chapter-tag">CHAPTER 6</span>Explainable ABR Log</strong>
+    Each quality switch with its reason (bandwidth drop, buffer health, etc.)
+    will appear here.
+  </div>
+
+  <!-- ── App entry point ───────────────────────────────────────────────── -->
+  <script type="module" src="/src/main.ts"></script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    // ── Language & environment ────────────────────────────────────────────────
+    "target": "ES2022",          // Modern JS features (top-level await, etc.)
+    "lib": ["ES2022", "DOM"],    // Include browser types (MediaSource, SourceBuffer, etc.)
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+
+    // ── Strictness — all on, learn to write correct TS from day one ──────────
+    "strict": true,
+    "noUncheckedIndexedAccess": true,   // arr[i] is T | undefined, not just T
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+
+    // ── Output ───────────────────────────────────────────────────────────────
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // ── Quality of life ──────────────────────────────────────────────────────
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
